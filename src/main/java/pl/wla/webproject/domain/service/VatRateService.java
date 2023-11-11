@@ -16,12 +16,12 @@ public class VatRateService {
     @Autowired
     private VatRateRepository vatRateRepository;
 
- //   @Autowired
-   // private VatRateMapper vatRateMapper;
+    @Autowired
+    private VatRateMapper vatRateMapper;
 
 
 public List<VatRate> getVatRates(){
     List<VatRateEntity> vatRateEntity = vatRateRepository.findAll();
-    return null;//vatRateEntity.stream().map(vatRateMapper.INSTANCE::entityToDomain).collect(Collectors.toList());
+    return vatRateEntity.stream().map(vatRateMapper.INSTANCE::entityToDomain).collect(Collectors.toList());
 }
 }
