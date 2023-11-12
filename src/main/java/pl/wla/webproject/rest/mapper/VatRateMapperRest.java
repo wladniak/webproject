@@ -12,17 +12,9 @@ public interface VatRateMapperRest {
     VatRateMapperRest INSTANCE = Mappers.getMapper(VatRateMapperRest.class);
 
 
-    @Mapping(source = "rate",target = "rate",numberFormat = "$#.00")
-    @Mapping(target = "vatRateStr",ignore = true)
+    @Mapping(source = "code",target = "code")
+    @Mapping(source = "rate",target = "rate")
     VatRateDTO domainToControlerDTO(VatRate vatRate);
 
-
-    VatRate ControlerDTOToDomain(VatRateDTO vatRateDTO);
-
-    @AfterMapping
-    public default void convertRateToStr(@MappingTarget VatRateDTO vatRateDTO) {
-        vatRateDTO.setVatRateStr(vatRateDTO.getVatRate()+"%");
-
-    }
 
 }

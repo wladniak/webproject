@@ -14,9 +14,8 @@ import pl.wla.webproject.repository.entities.VatRateEntity;
 public interface VatRateMapper {
     VatRateMapper INSTANCE = Mappers.getMapper(VatRateMapper.class);
 
-    @Mapping(source = "vatRate",target = "rate")
-    VatRateEntity domainToEntity(VatRate vatRate);
 
-    @Mapping(source = "rate",target = "vatRate")
+    @Mapping(source = "code",target = "code")
+    @Mapping(source = "rate",target = "rate")
     VatRate entityToDomain(VatRateEntity vatRate);
 }
