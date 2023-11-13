@@ -9,8 +9,8 @@ import pl.wla.webproject.repository.entities.VatRateEntity;
 
 
 
-@Mapper(implementationName = "VatRateMapperImpl", componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
-public interface VatRateMapper {
+@Mapper(implementationName = "EntityToDomainMapperImpl", componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
+public interface EntityToDomainMapper {
 
 
     @Mapping(source = "code",target = "code")

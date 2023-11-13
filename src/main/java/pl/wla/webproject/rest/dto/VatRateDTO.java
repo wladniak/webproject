@@ -8,5 +8,5 @@ import lombok.Setter;
 public class VatRateDTO {
     private String code;
     private int rate;
-
+    private String vatRateStr;
 }
