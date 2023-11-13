@@ -22,6 +22,6 @@ public class VatRateService {
 
 public List<VatRate> getVatRates(){
     List<VatRateEntity> vatRateEntity = vatRateRepository.findAll();
-    return vatRateEntity.stream().map(vatRateMapper.INSTANCE::entityToDomain).collect(Collectors.toList());
+    return vatRateEntity.stream().map(vatRateMapper::entityToDomain).collect(Collectors.toList());
 }
 }

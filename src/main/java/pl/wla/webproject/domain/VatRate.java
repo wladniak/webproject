@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class VatRate {
     private String code;
-    private int rate;
+    private int vatRate;
     }

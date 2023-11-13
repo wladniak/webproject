@@ -20,7 +20,7 @@ public class webController {
     VatRateMapperRest vatRateMapperRest;
     @GetMapping("/getVatRates")
     public List<VatRateDTO> getVat(){
-        return vatRateService.getVatRates().stream().map(VatRateMapperRest.INSTANCE::domainToControlerDTO).collect(Collectors.toList());
+        return vatRateService.getVatRates().stream().map(vatRateMapperRest::domainToControlerDTO).collect(Collectors.toList());
     }
 
 
