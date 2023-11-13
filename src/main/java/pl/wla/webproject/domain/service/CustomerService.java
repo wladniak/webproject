@@ -8,7 +8,6 @@ import pl.wla.webproject.domain.mapper.EntityToDomainMapper;
 import pl.wla.webproject.repository.CustomerRepository;
 import pl.wla.webproject.repository.entities.CustomerEntity;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 

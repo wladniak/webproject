@@ -1,9 +1,12 @@
 package pl.wla.webproject.repository.entities;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 @IdClass(InvoicePositionID.class)
 @Table(name ="INVOICE_POSITION")
 public class InvoicePositionEntity{

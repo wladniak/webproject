@@ -4,7 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.wla.webproject.repository.entities.VatRateEntity;
 
-
 import java.util.List;
 
 @Repository

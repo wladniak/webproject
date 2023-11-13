@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.wla.webproject.domain.service.CustomerService;
+import pl.wla.webproject.domain.service.InvoiceService;
 import pl.wla.webproject.domain.service.VatRateService;
 import pl.wla.webproject.rest.dto.CustomerDTO;
+import pl.wla.webproject.rest.dto.InvoiceDTO;
 import pl.wla.webproject.rest.dto.VatRateDTO;
 import pl.wla.webproject.rest.mapper.ControlerDTOToDomainMapper;
 import pl.wla.webproject.rest.mapper.DomainToControlerDTOMapper;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +23,9 @@ public class webController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private InvoiceService invoiceService;
 
     @Autowired
     DomainToControlerDTOMapper domainToControlerDTO;
@@ -69,5 +75,28 @@ public class webController {
         customerService.deleteCustomer(id);
         return HttpStatus.OK;
     }
+
+    @GetMapping("/getInvoices")
+    public List<InvoiceDTO> getInvoices(){
+        return invoiceService.getInvoices().stream().map(domainToControlerDTO::mapInvoice).collect(Collectors.toList());
+    }
+
+    @GetMapping("/getInvoice/{id}")
+    public List<InvoiceDTO> getInvoiceDetails(@PathVariable int id){
+        return invoiceService.getInvoiceDetails(id).stream().map(domainToControlerDTO::mapInvoice).collect(Collectors.toList());
+    }
+
+    @PostMapping("/addInvoice")
+    public HttpStatus addInvoice(@RequestBody InvoiceDTO invoice){
+        invoiceService.addInvoice(controlerDTOToDomain.mapInvoice(invoice));
+        return HttpStatus.CREATED;
+    }
+
+    @DeleteMapping("/delInvoice/{id}")
+    public HttpStatus deleteInvoice(@PathVariable int id){
+        invoiceService.deleteInvoice(id);
+        return HttpStatus.OK;
+    }
+
 
 }
