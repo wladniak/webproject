@@ -59,13 +59,13 @@ public class webController {
     }
 
     @PostMapping("/addCustomer")
-    public HttpStatus addVatDetails(@RequestBody CustomerDTO customer){
+    public HttpStatus addCustomer(@RequestBody CustomerDTO customer){
         customerService.addCustomer(controlerDTOToDomain.mapCustomer(customer));
         return HttpStatus.CREATED;
     }
 
     @DeleteMapping("/delCustomer/{id}")
-    public HttpStatus deleteVatRate(@PathVariable int id){
+    public HttpStatus deleteCustomer(@PathVariable int id){
         customerService.deleteCustomer(id);
         return HttpStatus.OK;
     }

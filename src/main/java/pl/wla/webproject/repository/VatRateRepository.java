@@ -11,7 +11,7 @@ import java.util.List;
 public interface VatRateRepository extends CrudRepository<VatRateEntity, Long> {
     List<VatRateEntity> findAll();
 
-    List<VatRateEntity> findByCode(String code);
+    List<VatRateEntity> findByCode(final String code);
 }
 
 
