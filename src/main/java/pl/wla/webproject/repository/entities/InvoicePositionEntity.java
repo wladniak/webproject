@@ -17,7 +17,7 @@ public class InvoicePositionEntity{
     @Column(name="POS_NO")
     private int posNo;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "POS_VAT_CODE", referencedColumnName = "VAT_CODE")
     private VatRateEntity vat;
     @Column(name="POS_QTY")

@@ -17,10 +17,10 @@ public class InvoiceEntity {
     @Column(name = "INV_DATE")
     @Temporal(TemporalType.DATE)
     private Date invDate;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "INV_CUST_ID", referencedColumnName = "CUST_ID")
     private CustomerEntity customer;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "POS_INV_NO")
     private List<InvoicePositionEntity> positions;
 
