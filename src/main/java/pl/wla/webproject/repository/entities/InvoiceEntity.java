@@ -21,7 +21,7 @@ public class InvoiceEntity {
     @JoinColumn(name = "INV_CUST_ID", referencedColumnName = "CUST_ID")
     private CustomerEntity customer;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "POS_INV_NO")
+    @JoinColumn(name = "POS_INV_NO", referencedColumnName = "INV_NO")
     private List<InvoicePositionEntity> positions;
 
 }
