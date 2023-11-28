@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="wla" id="1 Created new table VAT_RATE">
+        <!-- Validations -->
+        <preConditions>
+            <not>
+                <tableExists tableName="VAT_RATE"/>
+            </not>
+        </preConditions>
+        <!-- Create Table -->
+        <createTable tableName="VAT_RATE">
+            <column name="vat_code" type="VARCHAR(10)">
+                <constraints primaryKey="true" primaryKeyName="pk_vat" nullable="false"/>
+            </column>
+            <column name="VAT_RATE" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!-- Roll back -->
+        <rollback>
+            <dropTable tableName="VAT_RATE"/>
+        </rollback>
+        <comment>Created new table named 'VAT_RATE'</comment>
+    </changeSet>
+
+    <changeSet author="wla" id="2 Created new table customer">
+        <!-- Validations -->
+        <preConditions>
+            <not>
+                <tableExists tableName="customer"/>
+            </not>
+        </preConditions>
+        <!-- Create Table -->
+        <createTable tableName="customer">
+            <column name="cust_id" type="int">
+                <constraints primaryKey="true"  primaryKeyName="pk_cust" nullable="false"/>
+            </column>
+            <column name="cust_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!-- Roll back -->
+        <rollback>
+            <dropTable tableName="customer"/>
+        </rollback>
+        <comment>Created new table named 'customer'</comment>
+    </changeSet>
+</databaseChangeLog>

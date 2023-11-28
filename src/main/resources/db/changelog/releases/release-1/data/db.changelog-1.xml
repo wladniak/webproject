@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="wla" id="3 Inserted data in VAT_RATE table">
+        <!-- Validations -->
+        <preConditions>
+            <tableExists tableName="VAT_RATE"/>
+        </preConditions>
+        <!-- Create Table -->
+        <sql>
+            INSERT INTO VAT_RATE (VAT_CODE, VAT_RATE) VALUES ('A', 22);
+            INSERT INTO VAT_RATE (VAT_CODE, VAT_RATE) VALUES ('B', 8);
+            INSERT INTO VAT_RATE (VAT_CODE, VAT_RATE) VALUES ('C', 5);
+            INSERT INTO VAT_RATE (VAT_CODE, VAT_RATE) VALUES ('D', 3);
+            INSERT INTO VAT_RATE (VAT_CODE, VAT_RATE) VALUES ('E', 0);
+
+        </sql>
+        <comment>Inserted new record in table 'VAT_RATE'</comment>
+    </changeSet>
+
+    <changeSet author="wla" id="4 Inserted data in CUSTOMER table">
+        <!-- Validations -->
+        <preConditions>
+            <tableExists tableName="CUSTOMER"/>
+        </preConditions>
+        <!-- Create Table -->
+        <sql>
+            INSERT INTO CUSTOMER(CUST_ID,CUST_NAME) VALUES (1,'CUST 1');
+            INSERT INTO CUSTOMER(CUST_ID,CUST_NAME) VALUES (2,'CUST 2');
+            INSERT INTO CUSTOMER(CUST_ID,CUST_NAME) VALUES (3,'CUST 3');
+            INSERT INTO CUSTOMER(CUST_ID,CUST_NAME) VALUES (4,'CUST 4');
+
+        </sql>
+        <comment>Inserted new record in table 'CUSTOMER'</comment>
+    </changeSet>
+
+
+</databaseChangeLog>

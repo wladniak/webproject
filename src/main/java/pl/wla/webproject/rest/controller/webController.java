@@ -1,14 +1,16 @@
 package pl.wla.webproject.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.wla.webproject.domain.service.CustomerService;
 import pl.wla.webproject.domain.service.InvoiceService;
 import pl.wla.webproject.domain.service.VatRateService;
-import pl.wla.webproject.rest.dto.CustomerDTO;
-import pl.wla.webproject.rest.dto.InvoiceDTO;
-import pl.wla.webproject.rest.dto.VatRateDTO;
+import pl.wla.webproject.rest.dto.*;
 import pl.wla.webproject.rest.mapper.ControlerDTOToDomainMapper;
 import pl.wla.webproject.rest.mapper.DomainToControlerDTOMapper;
 
@@ -32,6 +34,18 @@ public class webController {
 
     @Autowired
     ControlerDTOToDomainMapper controlerDTOToDomain;
+
+
+    @Autowired
+    private Environment environementSettings;
+
+    @GetMapping("/properties")
+    public String getProperties() {
+        String setting1 = environementSettings.getProperty("moje.property");
+        String setting2 = environementSettings.getProperty("moje.property2");
+        return "ala ma kota" + setting1 + " "+ setting2;
+    }
+
     @GetMapping("/getVatRates")
     public List<VatRateDTO> getVat(){
         return vatRateService.getVatRates().stream().map(domainToControlerDTO::mapVat).collect(Collectors.toList());
@@ -39,7 +53,13 @@ public class webController {
 
     @GetMapping("/getVatRate/{code}")
     public List<VatRateDTO> getVatDetails(@PathVariable String code){
-        return vatRateService.getVatDetails(code).stream().map(domainToControlerDTO::mapVat).collect(Collectors.toList());
+        List<VatRateDTO> res = vatRateService.getVatDetails(code).stream().map(domainToControlerDTO::mapVat).collect(Collectors.toList());
+        if (res.isEmpty()){
+           throw new InvalidDataException("VAT code "+ code +" not found");
+        }
+        else{
+            return res;
+        }
     }
 
     @PostMapping("/addVatRate")
@@ -86,10 +106,12 @@ public class webController {
         return invoiceService.getInvoiceDetails(id).stream().map(domainToControlerDTO::mapInvoice).collect(Collectors.toList());
     }
 
-    @PostMapping("/addInvoice")
-    public HttpStatus addInvoice(@RequestBody InvoiceDTO invoice){
+    @PostMapping(path = "/addInvoice", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus addInvoice(@RequestBody InvoiceDTO invoice)  {
+
         invoiceService.addInvoice(controlerDTOToDomain.mapInvoice(invoice));
-        return HttpStatus.CREATED;
+        return HttpStatus.OK;
+
     }
 
     @DeleteMapping("/delInvoice/{id}")
