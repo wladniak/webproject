@@ -13,31 +13,35 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
-    @Autowired
-    private CustomerRepository customerRepository;
+
+    private final CustomerRepository customerRepository;
+
+    private final EntityToDomainMapper entityToDomainMapper;
+
+    private final DomainToEntityMapper domainToEntityMapper;
 
     @Autowired
-    private EntityToDomainMapper entityToDomainMapper;
+    public CustomerService(CustomerRepository customerRepository, EntityToDomainMapper entityToDomainMapper, DomainToEntityMapper domainToEntityMapper) {
+        this.customerRepository = customerRepository;
+        this.entityToDomainMapper = entityToDomainMapper;
+        this.domainToEntityMapper = domainToEntityMapper;
+    }
 
-    @Autowired
-    private DomainToEntityMapper domainToEntityMapper;
-
-
-    public List<Customer> getCustomers(){
+    public List<Customer> getCustomers() {
         List<CustomerEntity> customerEntity = customerRepository.findAll();
         return customerEntity.stream().map(entityToDomainMapper::mapCustomer).collect(Collectors.toList());
     }
 
-    public List<Customer> getCustomerDetails(final int id){
+    public List<Customer> getCustomerDetails(final int id) {
         List<CustomerEntity> customerEntity = customerRepository.findById(id);
         return customerEntity.stream().map(entityToDomainMapper::mapCustomer).collect(Collectors.toList());
     }
 
-    public void addCustomer(final Customer customer){
+    public void addCustomer(final Customer customer) {
         customerRepository.save(domainToEntityMapper.mapCustomer(customer));
     }
 
-    public void deleteCustomer(final int id){
+    public void deleteCustomer(final int id) {
         List<CustomerEntity> customerEntity = customerRepository.findById(id);
 
         for (CustomerEntity c : customerEntity) {

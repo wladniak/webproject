@@ -8,4 +8,4 @@ import lombok.Setter;
 public class VatRate {
     private String code;
     private int rate;
-    }
+}

@@ -14,18 +14,18 @@ import pl.wla.webproject.rest.dto.VatRateDTO;
 @Mapper(implementationName = "DomainToControlerDTOMapperImpl", componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface DomainToControlerDTOMapper {
 
-    @Mapping(source = "code",target = "code")
-    @Mapping(source = "rate",target = "vatRate")
-    @Mapping(target = "vatRateStr",ignore = true)
+    @Mapping(source = "code", target = "code")
+    @Mapping(source = "rate", target = "vatRate")
+    @Mapping(target = "vatRateStr", ignore = true)
     VatRateDTO mapVat(VatRate vatRate);
 
     @AfterMapping
-    default void convertRateToStr(@MappingTarget VatRateDTO vatRateDTO){
-        vatRateDTO.setVatRateStr(vatRateDTO.getVatRate()+"%");
+    default void convertRateToStr(@MappingTarget VatRateDTO vatRateDTO) {
+        vatRateDTO.setVatRateStr(vatRateDTO.getVatRate() + "%");
     }
 
-    @Mapping(source = "id",target = "id")
-    @Mapping(source = "name",target = "name")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
     CustomerDTO mapCustomer(Customer customer);
 
 
@@ -36,6 +36,7 @@ public interface DomainToControlerDTOMapper {
     @Mapping(source = "price", target = "price")
     @Mapping(source = "posDescription", target = "posDescription")
     InvoicePositionDTO mapInvoicePositions(InvoicePosition positions);
+
     @Mapping(source = "invNo", target = "invNo")
     @Mapping(source = "invDate", target = "invDate")
     @Mapping(source = "customer", target = "customer")

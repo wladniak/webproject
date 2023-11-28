@@ -18,8 +18,8 @@ import pl.wla.webproject.repository.entities.VatRateEntity;
 public interface EntityToDomainMapper {
 
 
-    @Mapping(source = "code",target = "code")
-    @Mapping(source = "rate",target = "rate")
+    @Mapping(source = "code", target = "code")
+    @Mapping(source = "rate", target = "rate")
     VatRate mapVat(VatRateEntity vatRate);
 
     @Mapping(source = "id", target = "id")
@@ -33,6 +33,7 @@ public interface EntityToDomainMapper {
     @Mapping(source = "price", target = "price")
     @Mapping(source = "posDescription", target = "posDescription")
     InvoicePosition mapInvoicePositions(InvoicePositionEntity positions);
+
     @Mapping(source = "invNo", target = "invNo")
     @Mapping(source = "invDate", target = "invDate")
     @Mapping(source = "customer", target = "customer")

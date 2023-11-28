@@ -23,21 +23,21 @@ public class VatRateService {
     @Autowired
     private DomainToEntityMapper domainToEntityMapper;
 
-public List<VatRate> getVatRates(){
-    List<VatRateEntity> vatRateEntity = vatRateRepository.findAll();
-    return vatRateEntity.stream().map(entityToDomainMapper::mapVat).collect(Collectors.toList());
-}
+    public List<VatRate> getVatRates() {
+        List<VatRateEntity> vatRateEntity = vatRateRepository.findAll();
+        return vatRateEntity.stream().map(entityToDomainMapper::mapVat).collect(Collectors.toList());
+    }
 
-    public List<VatRate> getVatDetails(final String code){
+    public List<VatRate> getVatDetails(final String code) {
         List<VatRateEntity> vatRateEntity = vatRateRepository.findByCode(code);
         return vatRateEntity.stream().map(entityToDomainMapper::mapVat).collect(Collectors.toList());
     }
 
-    public void addVatRate(final VatRate vatRate){
+    public void addVatRate(final VatRate vatRate) {
         vatRateRepository.save(domainToEntityMapper.mapVat(vatRate));
     }
 
-    public void deleteVatRate(final String code){
+    public void deleteVatRate(final String code) {
         List<VatRateEntity> vatRateEntity = vatRateRepository.findByCode(code);
 
         for (VatRateEntity v : vatRateEntity) {

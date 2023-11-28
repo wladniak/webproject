@@ -5,7 +5,7 @@ import pl.wla.webproject.repository.entities.CustomerEntity;
 
 import java.util.List;
 
-public interface CustomerRepository extends CrudRepository<CustomerEntity,Long> {
+public interface CustomerRepository extends CrudRepository<CustomerEntity, Long> {
     List<CustomerEntity> findAll();
 
     List<CustomerEntity> findById(final int id);

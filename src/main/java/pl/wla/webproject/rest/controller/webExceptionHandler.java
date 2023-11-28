@@ -11,19 +11,19 @@ import pl.wla.webproject.rest.dto.InvalidDataException;
 public class webExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<DataErrorResponse> handleException(InvalidDataException exc){
+    public ResponseEntity<DataErrorResponse> handleException(InvalidDataException exc) {
 
-        DataErrorResponse error = new DataErrorResponse(HttpStatus.NOT_FOUND.value(),exc.getMessage(),System.currentTimeMillis());
+        DataErrorResponse error = new DataErrorResponse(HttpStatus.NOT_FOUND.value(), exc.getMessage(), System.currentTimeMillis());
 
-        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
-    public ResponseEntity<DataErrorResponse> handleException(Exception exc){
+    public ResponseEntity<DataErrorResponse> handleException(Exception exc) {
 
-        DataErrorResponse error = new DataErrorResponse(HttpStatus.BAD_REQUEST.value(),exc.getMessage(),System.currentTimeMillis());
+        DataErrorResponse error = new DataErrorResponse(HttpStatus.BAD_REQUEST.value(), exc.getMessage(), System.currentTimeMillis());
 
-        return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
 

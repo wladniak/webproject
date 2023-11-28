@@ -14,8 +14,8 @@ import pl.wla.webproject.repository.entities.VatRateEntity;
 
 @Mapper(implementationName = "DomainToEntityMapperImpl", componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface DomainToEntityMapper {
-    @Mapping(source = "code",target = "code")
-    @Mapping(source = "rate",target = "rate")
+    @Mapping(source = "code", target = "code")
+    @Mapping(source = "rate", target = "rate")
     VatRateEntity mapVat(VatRate tRate);
 
     @Mapping(source = "id", target = "id")
@@ -30,6 +30,7 @@ public interface DomainToEntityMapper {
     @Mapping(source = "price", target = "price")
     @Mapping(source = "posDescription", target = "posDescription")
     InvoicePositionEntity mapInvoicePositions(InvoicePosition positions);
+
     @Mapping(source = "invNo", target = "invNo")
     @Mapping(source = "invDate", target = "invDate")
     @Mapping(source = "customer", target = "customer")

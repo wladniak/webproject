@@ -20,7 +20,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="INV_CUST_ID" type="int">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <!-- Roll back -->
@@ -36,8 +36,6 @@
                                  referencedTableName="customer"/>
 
     </changeSet>
-
-
 
 
     <changeSet author="wla" id="6 Created new table INVOICE_POSITION">
@@ -56,16 +54,16 @@
                 <constraints nullable="false"/>
             </column>
             <column name="POS_VAT_CODE" type="VARCHAR(10)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="POS_QTY" type="NUMBER">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="POS_PRICE" type="NUMBER">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="POS_DESC" type="VARCHAR(200)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
         </createTable>
         <!-- Roll back -->
@@ -81,5 +79,5 @@
                                  referencedTableName="VAT_RATE"/>
 
     </changeSet>
-   
+
 </databaseChangeLog>
