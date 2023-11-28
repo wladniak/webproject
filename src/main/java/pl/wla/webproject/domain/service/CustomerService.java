@@ -1,6 +1,7 @@
 package pl.wla.webproject.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import pl.wla.webproject.domain.Customer;
 import pl.wla.webproject.domain.mapper.DomainToEntityMapper;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Lazy
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
