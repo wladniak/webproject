@@ -3,6 +3,7 @@ package pl.wla.webproject.rest.dto;
 import lombok.Getter;
 import lombok.Setter;
 import pl.wla.webproject.domain.Customer;
+
 import java.util.Date;
 import java.util.List;
 
