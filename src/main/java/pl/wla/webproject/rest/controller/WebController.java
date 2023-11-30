@@ -9,8 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.wla.webproject.domain.VatRate;
 import pl.wla.webproject.domain.service.CustomerService;
-import pl.wla.webproject.domain.service.InvoiceService;
-import pl.wla.webproject.domain.service.VatRateService;
+import pl.wla.webproject.domain.service.InvoiceServiceImpl;
+import pl.wla.webproject.domain.service.VatRateServiceImpl;
 import pl.wla.webproject.rest.dto.CustomerDTO;
 import pl.wla.webproject.rest.dto.InvalidDataException;
 import pl.wla.webproject.rest.dto.InvoiceDTO;
@@ -22,15 +22,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class WebController {
 
 
-    private final VatRateService vatRateService;
+    private final VatRateServiceImpl vatRateService;
 
     private final CustomerService customerService;
 
-    private final InvoiceService invoiceService;
+    private final InvoiceServiceImpl invoiceService;
 
     private final DomainToControlerDTOMapper domainToControlerDTO;
 
