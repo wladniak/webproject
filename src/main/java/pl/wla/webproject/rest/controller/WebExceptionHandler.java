@@ -8,7 +8,7 @@ import pl.wla.webproject.rest.dto.DataErrorResponse;
 import pl.wla.webproject.rest.dto.InvalidDataException;
 
 @ControllerAdvice
-public class webExceptionHandler {
+public class WebExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<DataErrorResponse> handleException(InvalidDataException exc) {
