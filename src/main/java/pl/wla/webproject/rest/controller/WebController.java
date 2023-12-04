@@ -39,6 +39,8 @@ public class WebController {
 
     private final AQMessageListenerService aqMessageListenerService;
 
+    private final CommentsService commentsService;
+
     @Autowired
     @Qualifier("domainToControlerDTOMapperImpl")
 
@@ -151,8 +153,19 @@ public class WebController {
         } catch (JMSException e) {
             throw new RuntimeException(e);
         }
-        //controlerDTOToDomain.mapMessage(message));
         return HttpStatus.OK;
     }
+
+
+    @GetMapping("/getRestComments")
+    public List<CommentRestDTO> getRestComments() {
+        return commentsService.getComments().stream().map(domainToControlerDTO::mapComment).collect(Collectors.toList());
+    }
+
+    @GetMapping("/getRestComments/{id}")
+    public CommentRestDTO getSingleRestComments(@PathVariable int id) {
+        return domainToControlerDTO.mapComment(commentsService.getSingleComment(id));
+    }
+
 
 }

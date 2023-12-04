@@ -2,14 +2,8 @@ package pl.wla.webproject.rest.mapper;
 
 
 import org.mapstruct.*;
-import pl.wla.webproject.domain.Customer;
-import pl.wla.webproject.domain.Invoice;
-import pl.wla.webproject.domain.InvoicePosition;
-import pl.wla.webproject.domain.VatRate;
-import pl.wla.webproject.rest.dto.CustomerDTO;
-import pl.wla.webproject.rest.dto.InvoiceDTO;
-import pl.wla.webproject.rest.dto.InvoicePositionDTO;
-import pl.wla.webproject.rest.dto.VatRateDTO;
+import pl.wla.webproject.domain.*;
+import pl.wla.webproject.rest.dto.*;
 
 @Mapper(implementationName = "DomainToControlerDTOMapperImpl", componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface DomainToControlerDTOMapper {
@@ -43,4 +37,10 @@ public interface DomainToControlerDTOMapper {
     @Mapping(source = "positions", target = "positions")
     InvoiceDTO mapInvoice(Invoice invoice);
 
+
+    @Mapping(source = "postId", target = "postId")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "email", target = "email")
+    CommentRestDTO mapComment(CommentRest comment);
 }

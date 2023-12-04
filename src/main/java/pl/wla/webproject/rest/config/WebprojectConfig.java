@@ -1,4 +1,4 @@
-package pl.wla.webproject.rest.security;
+package pl.wla.webproject.rest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableJms
 public class WebprojectConfig {
-
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
         UserDetails wla1 = User.builder().username("wla1").password("{noop}wla1").roles("ROLE1").build();
