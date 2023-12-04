@@ -17,5 +17,5 @@ public interface VatRateDAO {
 
     void update(final VatRateEntity vatRateEntity);
 
-    void updateRateByCode(final String code,final int rate);
+    void updateRateByCode(final String code, final int rate);
 }

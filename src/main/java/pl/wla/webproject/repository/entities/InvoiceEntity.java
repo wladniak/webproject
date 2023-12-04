@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "INVOICE")
 public class InvoiceEntity {
     @Id
-   // @GeneratedValue(strategy=GenerationType.IDENTITY)
+    // @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "INV_NO")
     private int invNo;
     @Column(name = "INV_DATE")

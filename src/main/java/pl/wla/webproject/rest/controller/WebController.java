@@ -8,16 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.wla.webproject.domain.VatRate;
-import pl.wla.webproject.domain.service.CustomerService;
-import pl.wla.webproject.domain.service.InvoiceServiceImpl;
-import pl.wla.webproject.domain.service.VatRateServiceImpl;
-import pl.wla.webproject.rest.dto.CustomerDTO;
-import pl.wla.webproject.rest.dto.InvalidDataException;
-import pl.wla.webproject.rest.dto.InvoiceDTO;
-import pl.wla.webproject.rest.dto.VatRateDTO;
+import pl.wla.webproject.domain.service.*;
+import pl.wla.webproject.rest.dto.*;
 import pl.wla.webproject.rest.mapper.ControlerDTOToDomainMapper;
 import pl.wla.webproject.rest.mapper.DomainToControlerDTOMapper;
 
+import javax.jms.JMSException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +35,9 @@ public class WebController {
 
     private final Environment environementSettings;
 
+    private final AQMessageSenderService aqMessageSenderService;
+
+    private final AQMessageListenerService aqMessageListenerService;
 
     @Autowired
     @Qualifier("domainToControlerDTOMapperImpl")
@@ -79,6 +78,7 @@ public class WebController {
             return res;
         }
     }
+
     @PostMapping("/addVatRate")
     public HttpStatus addVatDetails(@RequestBody VatRateDTO vatRate) {
         vatRateService.addVatRate(controlerDTOToDomain.mapVat(vatRate));
@@ -137,5 +137,22 @@ public class WebController {
         return HttpStatus.OK;
     }
 
+
+    @PostMapping("/sendMessage")
+    public HttpStatus sendMessage(@RequestBody MessageDTO message) {
+        aqMessageSenderService.sendMessage(controlerDTOToDomain.mapMessage(message));
+        return HttpStatus.OK;
+    }
+
+    @GetMapping("/receiveMessage")
+    public HttpStatus receiveMessage(@RequestBody MessageDTO message) {
+        try {
+            aqMessageListenerService.receiveMessage();
+        } catch (JMSException e) {
+            throw new RuntimeException(e);
+        }
+        //controlerDTOToDomain.mapMessage(message));
+        return HttpStatus.OK;
+    }
 
 }
